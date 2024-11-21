@@ -17,8 +17,11 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('role');
             $table->rememberToken();
+            $table->decimal('gpa', 3, 2)->nullable(); // Only for students
+            $table->decimal('math_grade', 3, 2)->nullable(); // Only for students
+            $table->decimal('science_grade', 3, 2)->nullable(); // Only for students
+            $table->enum('role', ['student', 'admin'])->default('student'); // Role-based access
             $table->timestamps();
         });
 

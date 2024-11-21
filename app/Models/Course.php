@@ -16,4 +16,8 @@ class Course extends Model
     public function registrations() {
         return $this->hasMany(Registration::class);
     }
+
+    public function prerequisites() {
+        return $this->hasMany(CoursePrerequisite::class);
+    }
 }

@@ -22,6 +22,10 @@ class User extends Authenticatable implements JWTSubject
         'name',
         'email',
         'password',
+        'role',
+        'gpa',
+        'math_grade',
+        'science_grade',
     ];
 
     /**
@@ -71,5 +75,9 @@ class User extends Authenticatable implements JWTSubject
 
     public function registrations() {
         return $this->hasMany(Registration::class);
+    }
+
+    public function grades() {
+        return $this->hasMany(Grade::class);
     }
 }

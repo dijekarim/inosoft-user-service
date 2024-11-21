@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -14,11 +15,11 @@ return new class extends Migration
         Schema::create('departments', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->integer('max_quota')->min(0);
             $table->date('start_reg');
             $table->date('end_reg');
-            $table->float('min_math_grade', 2)->min(0);
-            $table->float('min_science_grade', 2)->min(0);
+            $table->integer('quota')->default(100); // Maximum number of students
+            $table->decimal('min_math_grade', 3, 2)->default(8.0); // Minimum math grade required
+            $table->decimal('min_science_grade', 3, 2)->default(8.0); // Minimum science grade required
             $table->timestamps();
         });
     }

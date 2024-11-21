@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Registration extends Model
+class CoursePrerequisite extends Model
 {
     use HasFactory;
 
@@ -13,7 +13,7 @@ class Registration extends Model
         return $this->belongsTo(Course::class);
     }
 
-    public function user() {
-        return $this->belongsTo(User::class);
+    public function prerequisiteCourse() {
+        return $this->belongsTo(Course::class, 'prerequisite_course_id');
     }
 }

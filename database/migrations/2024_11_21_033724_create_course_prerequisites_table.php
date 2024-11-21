@@ -2,7 +2,6 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -12,17 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('registrations', function (Blueprint $table) {
+        Schema::create('course_prerequisites', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id'); // Replaces student_id
-            $table->unsignedBigInteger('course_id');
-            $table->timestamp('registration_date')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->unsignedBigInteger('course_id'); // Course requiring prerequisites
+            $table->unsignedBigInteger('prerequisite_course_id'); // Prerequisite course
             $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('course_id')->references('id')->on('courses')->onDelete('cascade');
+            $table->foreign('prerequisite_course_id')->references('id')->on('courses')->onDelete('cascade');
 
-            $table->unique(['user_id', 'course_id']);
+            $table->unique(['course_id', 'prerequisite_course_id']); // Ensure unique prerequisite pairs
         });
     }
 
@@ -31,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('registrations');
+        Schema::dropIfExists('course_prerequisites');
     }
 };
