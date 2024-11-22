@@ -21,8 +21,11 @@ return new class extends Migration
             $table->decimal('gpa', 3, 2)->nullable(); // Only for students
             $table->decimal('math_grade', 3, 2)->nullable(); // Only for students
             $table->decimal('science_grade', 3, 2)->nullable(); // Only for students
-            $table->enum('role', ['student', 'admin'])->default('student'); // Role-based access
             $table->timestamps();
+
+            $table->index('name');
+            $table->index('email');
+            $table->index('gpa');
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {

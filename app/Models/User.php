@@ -80,4 +80,14 @@ class User extends Authenticatable implements JWTSubject
     public function grades() {
         return $this->hasMany(Grade::class);
     }
+
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
+    }
+
+    public function hasPermission($permission)
+    {
+        return $this->role->permissions->contains('name', $permission);
+    }
 }

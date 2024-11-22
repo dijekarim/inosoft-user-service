@@ -20,7 +20,10 @@ return new class extends Migration
             $table->integer('quota')->default(100); // Maximum number of students
             $table->decimal('min_math_grade', 3, 2)->default(8.0); // Minimum math grade required
             $table->decimal('min_science_grade', 3, 2)->default(8.0); // Minimum science grade required
+            $table->integer('total_students_registered')->min(0)->default(0);
             $table->timestamps();
+
+            $table->index('name');
         });
     }
 

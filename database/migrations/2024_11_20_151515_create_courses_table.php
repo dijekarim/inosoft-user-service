@@ -15,7 +15,9 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('department_id'); // Foreign key to departments
             $table->string('name'); // Name of the course
+            $table->integer('quota')->min(0)->default(0); // Code of the course
             $table->integer('credits'); // Number of credits for the course
+            $table->integer('total_students_registered')->min(0)->default(0);
             $table->timestamps();
 
             $table->foreign('department_id')->references('id')->on('departments')->onDelete('cascade');
