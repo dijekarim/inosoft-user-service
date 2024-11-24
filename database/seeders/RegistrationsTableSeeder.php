@@ -19,8 +19,18 @@ class RegistrationsTableSeeder extends Seeder
         // Create a registration
         Registration::create([
             'user_id' => $student->id,
+            'department_id' => $csIntroToProgramming->department_id,
             'course_id' => $csIntroToProgramming->id,
             'registration_date' => now(),
         ]);
+
+        // Update registered students count
+        $department = $csIntroToProgramming->department;
+        $department->total_students_registered += 1;
+        $department->save();
+
+        // Update registered students count
+        $csIntroToProgramming->total_students_registered += 1;
+        $csIntroToProgramming->save();
     }
 }

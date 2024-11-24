@@ -19,24 +19,28 @@ class CoursesTableSeeder extends Seeder
         Course::create([
             'name' => 'Intro to Programming',
             'department_id' => $csDepartment->id,
+            'quota' => 30,
             'credits' => 3,
         ]);
 
         Course::create([
             'name' => 'Algorithms and Data Structures',
             'department_id' => $csDepartment->id,
+            'quota' => 30,
             'credits' => 4,
         ]);
 
         Course::create([
             'name' => 'Circuit Theory',
             'department_id' => $eeDepartment->id,
+            'quota' => 30,
             'credits' => 3,
         ]);
 
         Course::create([
             'name' => 'Mechanical Vibrations',
             'department_id' => $meDepartment->id,
+            'quota' => 30,
             'credits' => 3,
         ]);
     }
